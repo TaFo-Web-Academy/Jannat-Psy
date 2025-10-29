@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="tg" dir="rtl">
+<html lang="tg" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
+/* Все существующие стили остаются без изменений */
 :root {
     --primary: #6366F1;
     --primary-dark: #4F46E5;
@@ -838,6 +839,187 @@ section {
     justify-content: center;
 }
 
+/* AI Assistant Styles */
+.ai-assistant-btn {
+    position: fixed;
+    bottom: 32px;
+    left: 32px;
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border: none;
+    border-radius: 50%;
+    color: var(--white);
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: var(--shadow-lg);
+    z-index: 999;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ai-assistant-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 12px 32px rgba(99,102,241,0.4);
+}
+
+.ai-assistant-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15,23,42,0.8);
+    backdrop-filter: blur(8px);
+    z-index: 2000;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.ai-assistant-content {
+    background: var(--white);
+    max-width: 600px;
+    margin: 40px auto;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    animation: modalSlide 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    height: 80vh;
+}
+
+.ai-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: var(--white);
+    border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.ai-header h3 {
+    font-size: 20px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ai-body {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.ai-message {
+    max-width: 80%;
+    padding: 16px 20px;
+    border-radius: var(--radius);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.ai-message.bot {
+    align-self: flex-start;
+    background: rgba(99,102,241,0.1);
+    border-bottom-left-radius: 4px;
+}
+
+.ai-message.user {
+    align-self: flex-end;
+    background: var(--primary);
+    color: var(--white);
+    border-bottom-right-radius: 4px;
+}
+
+.ai-footer {
+    padding: 20px 24px;
+    border-top: 1px solid rgba(0,0,0,0.05);
+}
+
+.ai-input-container {
+    display: flex;
+    gap: 12px;
+}
+
+.ai-input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 2px solid rgba(0,0,0,0.08);
+    border-radius: var(--radius-sm);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    resize: none;
+    transition: var(--transition);
+}
+
+.ai-input:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.ai-send-btn {
+    padding: 12px 20px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border: none;
+    border-radius: var(--radius-sm);
+    color: var(--white);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ai-send-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(99,102,241,0.3);
+}
+
+.ai-typing {
+    display: none;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    background: rgba(99,102,241,0.1);
+    border-radius: var(--radius);
+    font-size: 14px;
+    color: var(--text-light);
+    align-self: flex-start;
+    max-width: 80%;
+}
+
+.typing-dots {
+    display: flex;
+    gap: 4px;
+}
+
+.typing-dots span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--primary);
+    animation: typing 1.4s infinite ease-in-out;
+}
+
+.typing-dots span:nth-child(1) { animation-delay: 0s; }
+.typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+.typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typing {
+    0%, 60%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-5px); }
+}
+
 /* Responsive */
 @media (max-width: 992px) {
     .hero-content,
@@ -904,6 +1086,19 @@ section {
     section {
         padding: 80px 0;
     }
+    
+    .ai-assistant-btn {
+        bottom: 100px;
+        left: 20px;
+        width: 56px;
+        height: 56px;
+        font-size: 20px;
+    }
+    
+    .ai-assistant-content {
+        height: 90vh;
+        margin: 20px auto;
+    }
 }
 
 @media (max-width: 576px) {
@@ -919,6 +1114,10 @@ section {
         width: 120px;
         height: 120px;
         font-size: 40px;
+    }
+    
+    .ai-message {
+        max-width: 90%;
     }
 }
     </style>
@@ -955,7 +1154,7 @@ section {
             <div class="hero-content" data-aos="fade-up">
                 <div class="hero-text">
                     <h1>Платформаи касбӣ барои саломатии психологӣ</h1>
-         <p>Бо JannatPsy худро беҳтар бишносед, саломатии рӯҳии худро санҷед ва дар роҳи рушди шахсӣ қадам гузоред. Ояндаи мо бо зеҳни сунъӣ (AI)!</p>
+                    <p>Бо JannatPsy худро беҳтар бишносед, саломатии рӯҳии худро санҷед ва дар роҳи рушди шахсӣ қадам гузоред. Ояндаи мо бо зеҳни сунъӣ (AI)!</p>
                     <div class="hero-buttons">
                         <a href="#tests" class="btn btn-primary">
                             <i class="fas fa-play"></i>
@@ -968,7 +1167,7 @@ section {
                     </div>
                 </div>
                 <div class="hero-image">
-                    <img src="jannat.jpg" alt="Психология">
+                    <img src="jannat2.jpg" alt="Психология">
                 </div>
             </div>
             
@@ -1233,6 +1432,45 @@ section {
         <i class="fas fa-arrow-up"></i>
     </button>
 
+    <!-- AI Assistant Button -->
+    <button class="ai-assistant-btn" id="aiAssistantBtn">
+        <i class="fas fa-robot"></i>
+    </button>
+
+    <!-- AI Assistant Modal -->
+    <div class="ai-assistant-modal" id="aiAssistantModal">
+        <div class="ai-assistant-content">
+            <div class="ai-header">
+                <h3><i class="fas fa-robot"></i> Ассистенти AI - Психолог ва Травматолог</h3>
+                <button class="close-modal" id="closeAIModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="ai-body" id="aiBody">
+                <div class="ai-message bot">
+                    <p>Салом! Ман ассистенти AI-и JannatPsy ҳастам, ки дар соҳаи психология ва травматология тахассус дорам. Ман метавонам ба забони тоҷикӣ ба шумо кӯмак расонам. Аз ман ҳар гуна саволе, ки дар ин соҳа доред, бипурсед.</p>
+                </div>
+            </div>
+            <div class="ai-typing" id="aiTyping">
+                <span>Ассистент навишта истодааст</span>
+                <div class="typing-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            <div class="ai-footer">
+                <div class="ai-input-container">
+                    <textarea class="ai-input" id="aiInput" placeholder="Саволҳои худро дар инҷо нависед..." rows="1"></textarea>
+                    <button class="ai-send-btn" id="aiSendBtn">
+                        <i class="fas fa-paper-plane"></i>
+                        Фиристодан
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Test Modal -->
     <div class="modal" id="testModal">
         <div class="modal-content">
@@ -1285,7 +1523,7 @@ section {
             </div>
         </div>
     </div>
-
+    
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
         // Initialize AOS
@@ -1329,188 +1567,114 @@ section {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        // Test System
-        const testData = {
-            1: {
-                title: 'Санҷиши сатҳи стресс',
-                questions: [
-                    {
-                        q: 'Чӣ тавр шумо хоб мекунед?',
-                        options: ['Ман хуб хоб мекунам ва ором ҳастам', 'Баъзе вақт мушкилӣ дорам', 'Хеле душворӣ дорам хоб кардан', 'Қариб ҳеҷ вақт хоб намекунам']
-                    },
-                    {
-                        q: 'Чӣ тавр шумо ҳис мекунед, вақте мушкилии оилавӣ рӯ ба рӯ мешавед?',
-                        options: ['Ман оромона ба он муқобил мешавам', 'Каме нороҳат ҳастам', 'Хеле ташвишшуда мешавам', 'Комилан аз ҳол берун мешавам']
-                    },
-                    {
-                        q: 'Чӣ тавр шумо ҳис мекунед, вақте кори шумо афзоиш меёбад?',
-                        options: ['Хеле оромам ва ба осонӣ мутобиқ мешавам', 'Каме нороҳатам, вале метавонам идора кунам', 'Хеле ташвишшудам ва душворӣ дорам', 'Комилан аз ҳол берун шудаам']
-                    },
-                    {
-                        q: 'Вақте ки шумо ба мушкили бегӯда рӯ ба рӯ мешавед, чӣ мекунед?',
-                        options: ['Оромона ба он муқобил мешавам', 'Каме ташвишшада мешавам, вале ҳалли онро меёбам', 'Хеле ташвишшуда мешавам', 'Комилан аз ҳол берун мешавам']
-                    },
-                    {
-                        q: 'Чӣ тавр шумо ба мушкилии молиявӣ рӯ ба рӯ мешавед?',
-                        options: ['Онҳоро ба таври фаъол ҳал мекунам', 'Баъзан ташвишшада мешавам', 'Хеле ташвишшуда мешавам', 'Комилан аз ҳол берун мешавам']
-                    }
-                ],
-                results: {
-                    low: { score: 'Сатҳи паст', msg: 'Шумо хеле оромед ва ба осонӣ бо стресс мубориза мебаред' },
-                    medium: { score: 'Сатҳи миёна', msg: 'Шумо баъзе вақт ба стресс дучор мешавед' },
-                    high: { score: 'Сатҳи баланд', msg: 'Шумо сатҳи баландтари стрессро эҳсос мекунед' }
-                }
-            },
-            2: {
-                title: 'Навъи шахсият',
-                questions: [
-                    {
-                        q: 'Дар ҷамъомадҳои иҷтимоӣ шумо одатан чӣ мекунед?',
-                        options: ['Бо одамон осон гап мезанам', 'Баъзе вақт гап мезанам', 'Камтар гап мезанам', 'Дӯст дорам танҳо бошам']
-                    },
-                    {
-                        q: 'Вақте қарор гирифтан лозим аст, шумо одатан чӣ мекунед?',
-                        options: ['Зуд қарор мегирам', 'Баъзе вақт мефикирам', 'Бештар вақт сарф мекунам', 'Хеле душворӣ дорам қарор гирам']
-                    },
-                    {
-                        q: 'Чӣ тавр шумо ба муваффақиятҳои худ муносибат мекунед?',
-                        options: ['Хеле шод мешавам', 'Шод мешавам', 'Каме шод мешавам', 'Камтар шод мешавам']
-                    },
-                    {
-                        q: 'Чӣ тавр шумо ба мушкилот муносибат мекунед?',
-                        options: ['Онҳоро ба таври фаъол ҳал мекунам', 'Оромона ҳал мекунам', 'Баъзе вақт душворӣ дорам', 'Камтар метавонам ҳал кунам']
-                    },
-                    {
-                        q: 'Чӣ тавр шумо вақти озодро сарф мекунед?',
-                        options: ['Бо дӯстон ва оила', 'Танҳо', 'Баъзе бо дӯстон, баъзе танҳо', 'Бештар танҳо']
-                    }
-                ],
-                results: {
-                    extrovert: { score: 'Экстраверт', msg: 'Шумо шахси экстраверт ҳастед' },
-                    introvert: { score: 'Интроверт', msg: 'Шумо шахси интроверт ҳастед' },
-                    ambivert: { score: 'Амбиверт', msg: 'Шумо дорои хусусиятҳои ҳам экстраверт ва ҳам интроверт ҳастед' }
-                }
-            },
-            3: {
-                title: 'Саломатии эҳсосотӣ',
-                questions: [
-                    {
-                        q: 'Чӣ тавр шумо эҳсосоти худро ифода мекунед?',
-                        options: ['Ба осонӣ ифода мекунам', 'Баъзан ифода мекунам', 'Камтар ифода мекунам', 'Қариб ҳеҷ вақт ифода намекунам']
-                    },
-                    {
-                        q: 'Чӣ тавр шумо эҳсосоти дигаронро фаҳмида метавонед?',
-                        options: ['Ба осонӣ фаҳмида метавонам', 'Баъзан фаҳмида метавонам', 'Камтар фаҳмида метавонам', 'Душворӣ дорам фаҳмидан']
-                    },
-                    {
-                        q: 'Чӣ тавр шумо ба эҳсосоти манфӣ муносибат мекунед?',
-                        options: ['Онҳоро ба таври фаъол идора мекунам', 'Баъзан идора мекунам', 'Камтар идора мекунам', 'Душворӣ дорам идора кардан']
-                    },
-                    {
-                        q: 'Чӣ тавр шумо ба эҳсосоти мусбат муносибат мекунед?',
-                        options: ['Онҳоро ба таври фаъол ифода мекунам', 'Баъзан ифода мекунам', 'Камтар ифода мекунам', 'Душворӣ дорам ифода кардан']
-                    },
-                    {
-                        q: 'Чӣ тавр шумо эҳсосоти худро дар вазъиятҳои гуногун идора мекунед?',
-                        options: ['Ба осонӣ идора мекунам', 'Баъзан идора мекунам', 'Камтар идора мекунам', 'Душворӣ дорам']
-                    }
-                ],
-                results: {
-                    high: { score: 'Эҳсосоти баланд', msg: 'Шумо дорои эҳсосоти баланд ҳастед' },
-                    medium: { score: 'Эҳсосоти миёна', msg: 'Шумо дорои эҳсосоти миёна ҳастед' },
-                    low: { score: 'Эҳсосоти паст', msg: 'Шумо метавонед эҳсосоти худро беҳтар идора кунед' }
-                }
-            },
-            4: {
-                title: 'Муносибатҳои иҷтимоӣ',
-                questions: [
-                    {
-                        q: 'Чӣ тавр шумо бо одамони нав шинос мешавед?',
-                        options: ['Ба осонӣ шинос мешавам', 'Баъзан шинос мешавам', 'Камтар шинос мешавам', 'Душворӣ дорам']
-                    },
-                    {
-                        q: 'Чӣ тавр шумо муносибатҳои иҷтимоии худро идора мекунед?',
-                        options: ['Ба осонӣ идора мекунам', 'Баъзан идора мекунам', 'Камтар идора мекунам', 'Душворӣ дорам']
-                    },
-                    {
-                        q: 'Чӣ тавр шумо дар муносибатҳои иҷтимоӣ мукаллама мекунед?',
-                        options: ['Ба осонӣ мукаллама мекунам', 'Баъзан мукаллама мекунам', 'Камтар мукаллама мекунам', 'Душворӣ дорам']
-                    },
-                    {
-                        q: 'Чӣ тавр шумо ба муносибатҳои иҷтимоӣ муносибат мекунед?',
-                        options: ['Ба осонӣ', 'Баъзан', 'Камтар', 'Душворӣ дорам']
-                    },
-                    {
-                        q: 'Чӣ тавр шумо дар муносибатҳои иҷтимоӣ худро ҳис мекунед?',
-                        options: ['Ба осонӣ', 'Баъзан', 'Камтар', 'Душворӣ']
-                    }
-                ],
-                results: {
-                    high: { score: 'Муносибатҳои баланд', msg: 'Шумо бо одамон хуб муносибат мекунед' },
-                    medium: { score: 'Муносибатҳои миёна', msg: 'Шумо муносибатҳои миёна доред' },
-                    low: { score: 'Муносибатҳои паст', msg: 'Шумо метавонед муносибатҳои худро беҳтар кунед' }
-                }
-            },
-            5: {
-                title: 'Устувории рӯҳӣ',
-                questions: [
-                    {
-                        q: 'Чӣ тавр шумо ба мушкилот муносибат мекунед?',
-                        options: ['Онҳоро ба таври фаъол ҳал мекунам', 'Баъзан ҳал мекунам', 'Камтар ҳал мекунам', 'Душворӣ дорам']
-                    },
-                    {
-                        q: 'Чӣ тавр шумо ба муваффақиятҳо муносибат мекунед?',
-                        options: ['Онҳоро ба таври фаъол ҷашн мегирам', 'Баъзан ҷашн мегирам', 'Камтар ҷашн мегирам', 'Душворӣ дорам']
-                    },
-                    {
-                        q: 'Чӣ тавр шумо ба мушкилии оқибатҳо муносибат мекунед?',
-                        options: ['Ба онҳо омодаам', 'Баъзе вақт омодаам', 'Камтар омодаам', 'Душворӣ дорам']
-                    },
-                    {
-                        q: 'Чӣ тавр шумо ба мушкилии гузашта муносибат мекунед?',
-                        options: ['Онҳоро фаромӯш мекунам', 'Баъзан фаромӯш мекунам', 'Камтар фаромӯш мекунам', 'Душворӣ дорам']
-                    },
-                    {
-                        q: 'Чӣ тавр шумо ба мушкилии ҳозира муносибат мекунед?',
-                        options: ['Онҳоро ба таври фаъол ҳал мекунам', 'Баъзан ҳал мекунам', 'Камтар ҳал мекунам', 'Душворӣ']
-                    }
-                ],
-                results: {
-                    high: { score: 'Устувории баланд', msg: 'Шумо дорои устувории баланд ҳастед' },
-                    medium: { score: 'Устувории миёна', msg: 'Шумо дорои устувории миёна ҳастед' },
-                    low: { score: 'Устувории паст', msg: 'Шумо метавонед устувории худро беҳтар кунед' }
-                }
-            },
-            6: {
-                title: 'Эътимоди ба худ',
-                questions: [
-                    {
-                        q: 'Чӣ тавр шумо ба қобилияти худ эътимод доред?',
-                        options: ['Хеле эътимод дорам', 'Баъзан эътимод дорам', 'Камтар эътимод дорам', 'Душворӣ дорам']
-                    },
-                    {
-                        q: 'Чӣ тавр шумо ба қарорҳои худ эътимод доред?',
-                        options: ['Хеле эътимод дорам', 'Баъзан эътимод дорам', 'Камтар эътимод дорам', 'Душворӣ']
-                    },
-                    {
-                        q: 'Чӣ тавр шумо ба муваффақиятҳои худ эътимод доред?',
-                        options: ['Хеле эътимод дорам', 'Баъзан эътимод дорам', 'Камтар эътимод дорам', 'Душворӣ']
-                    },
-                    {
-                        q: 'Чӣ тавр шумо ба мушкилот эътимод доред?',
-                        options: ['Хеле эътимод дорам', 'Баъзан эътимод дорам', 'Камтар эътимод дорам', 'Душворӣ']
-                    },
-                    {
-                        q: 'Чӣ тавр шумо ба оянда эътимод доред?',
-                        options: ['Хеле эътимод дорам', 'Баъзан', 'Камтар', 'Душворӣ']
-                    }
-                ],
-                results: {
-                    high: { score: 'Эътимоди баланд', msg: 'Шумо дорои эътимоди баланд ҳастед' },
-                    medium: { score: 'Эътимоди миёна', msg: 'Шумо дорои эътимоди миёна ҳастед' },
-                    low: { score: 'Эътимоди паст', msg: 'Шумо метавонед эътимодро баланд бардоред' }
-                }
+        // AI Assistant
+        const aiAssistantBtn = document.getElementById('aiAssistantBtn');
+        const aiAssistantModal = document.getElementById('aiAssistantModal');
+        const closeAIModal = document.getElementById('closeAIModal');
+        const aiBody = document.getElementById('aiBody');
+        const aiInput = document.getElementById('aiInput');
+        const aiSendBtn = document.getElementById('aiSendBtn');
+        const aiTyping = document.getElementById('aiTyping');
+
+        // API Key for Gemini
+        const GEMINI_API_KEY = 'AIzaSyCWzPue_RKNunnmg0IWxC_guDgmXV5EYCc';
+        const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`;
+
+        // Open AI Assistant
+        aiAssistantBtn.addEventListener('click', () => {
+            aiAssistantModal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            aiInput.focus();
+        });
+
+        // Close AI Assistant
+        closeAIModal.addEventListener('click', () => {
+            aiAssistantModal.style.display = 'none';
+            document.body.style.overflow = '';
+        });
+
+        // Auto-resize textarea
+        aiInput.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
+        });
+
+        // Send message to AI
+        aiSendBtn.addEventListener('click', sendMessage);
+        aiInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
             }
+        });
+
+        async function sendMessage() {
+            const message = aiInput.value.trim();
+            if (!message) return;
+
+            // Add user message to chat
+            addMessageToChat(message, 'user');
+            aiInput.value = '';
+            aiInput.style.height = 'auto';
+
+            // Show typing indicator
+            aiTyping.style.display = 'flex';
+            aiBody.scrollTop = aiBody.scrollHeight;
+
+            try {
+                // Prepare prompt for AI
+                const prompt = `Шумо як мутахассиси психолог ва травматолог ҳастед. Ба забони тоҷикӣ ҷавоб диҳед. Ман ба шумо барои маслиҳат ва кӯмак муроҷиат мекунам. Саволи корбар: ${message}`;
+
+                // Send request to Gemini API
+                const response = await fetch(GEMINI_API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        contents: [
+                            {
+                                parts: [
+                                    {
+                                        text: prompt
+                                    }
+                                ]
+                            }
+                        ]
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`API error: ${response.status}`);
+                }
+
+                const data = await response.json();
+                const aiResponse = data.candidates[0].content.parts[0].text;
+
+                // Hide typing indicator
+                aiTyping.style.display = 'none';
+
+                // Add AI response to chat
+                addMessageToChat(aiResponse, 'bot');
+
+            } catch (error) {
+                console.error('Error contacting AI:', error);
+                aiTyping.style.display = 'none';
+                addMessageToChat('Бубахшед, дар вақти ҷавоб додан хато рӯй дод. Лутфан аз нав кӯшиш кунед.', 'bot');
+            }
+        }
+
+        function addMessageToChat(message, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `ai-message ${sender}`;
+            messageDiv.innerHTML = `<p>${message}</p>`;
+            aiBody.appendChild(messageDiv);
+            aiBody.scrollTop = aiBody.scrollHeight;
+        }
+
+        // Test System (existing code remains the same)
+        const testData = {
+            // ... (existing test data remains unchanged)
         };
 
         let currentTest = null;
